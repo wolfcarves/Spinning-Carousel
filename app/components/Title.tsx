@@ -45,9 +45,8 @@ const Title: FC<TitleProps> = ({
       <div className='overflow-hidden'>
         <h1
           className={`${
-            isImageChanged ? 'text-upwards' : ''
-          } font-extralight title text-white text-center justify-center text-[60px] tracking-[150px] -me-[150px] uppercase`}
-          style={{ lineHeight: '1em' }}
+            isImageChanged && 'text-upwards'
+          } font-extralight title text-white text-center justify-center text-[5vw] xl:text-[60px] tracking-[7.5vw] -me-[7.5vw] uppercase leading-[1em]`}
         >
           {title}
         </h1>

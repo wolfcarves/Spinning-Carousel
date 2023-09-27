@@ -15,7 +15,7 @@ body {
 }
 
 .core {
-  mask-image: radial-gradient(40rem, black 50%, transparent 50%);
+  mask-image: radial-gradient(33vw, black 50%, transparent 50%);
 }
 
 .core-spin {
@@ -23,7 +23,7 @@ body {
 }
 
 .mantle {
-  mask-image: radial-gradient(80rem, black 50%, transparent 50%);
+  mask-image: radial-gradient(67vw, black 50%, transparent 50%);
 }
 
 .mantle-spin {
@@ -124,5 +124,18 @@ body {
 
   100% {
     transform: translateY(0%);
+  }
+}
+
+/* Media Queries */
+
+
+@media (max-width: 1024px) {
+  .core {
+    mask-image: radial-gradient(20rem, black 50%, transparent 50%);
+  }
+
+  .mantle {
+    mask-image: radial-gradient(40rem, black 50%, transparent 50%);
   }
 }
