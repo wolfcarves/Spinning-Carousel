@@ -8,70 +8,73 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  /* transform: scale(0.9); */
+}
+
+.layer {
+  transform: scale(1.3);
 }
 
 .core {
-  mask-image: radial-gradient(30rem, black 50%, transparent 50%);
-  transform: scale(1.6);
+  mask-image: radial-gradient(40rem, black 50%, transparent 50%);
 }
 
 .core-spin {
-  animation: coreSpin 1500ms ease-in-out 0ms;
+  animation: coreSpin 1500ms ease-in-out 400ms;
 }
 
 .mantle {
-  mask-image: radial-gradient(60rem, black 50%, transparent 50%);
-  transform: scale(1.6);
+  mask-image: radial-gradient(80rem, black 50%, transparent 50%);
 }
 
 .mantle-spin {
-  animation: mantleSpin 1500ms ease-in-out 200ms forwards;
+  animation: mantleSpin 1500ms ease-in-out 600ms forwards;
 }
 
-.crust {
-  transform: scale(1.6);
+.mantle-scale {
+  animation: mantleScale 1500ms ease-in-out 600ms forwards;
 }
+
+.crust {}
 
 .crust-spin {
-  animation: crustSpin 1500ms ease-in-out 300ms forwards;
+  animation: crustSpin 1500ms ease-in-out 800ms forwards;
 }
 
 .crust-scale {
-  animation: crustScale 1500ms ease-in-out 300ms forwards;
+  animation: crustScale 1500ms ease-in-out 800ms forwards;
 }
-
 
 .seperator {
   clip-path: polygon(0 50%, 23% 48%, 50% 48%, 75% 48%, 100% 50%, 75% 51%, 50% 51%, 24% 51%);
 }
 
 .image {
-  transition: opacity 1000ms;
+  transition: opacity 1200ms;
 }
-
 
 @keyframes coreSpin {
   0% {
-    opacity: 1;
-    transform: scale(1.6) rotate(0deg);
+    transform: scale(1.3) rotate(0deg);
   }
 
   100% {
-    opacity: 1;
-    transform: scale(1.6) rotate(360deg);
+    transform: scale(1.3) rotate(360deg);
   }
 }
 
 @keyframes mantleSpin {
   0% {
-    opacity: 1;
-    transform: scale(1.6) rotate(0deg);
+    transform: scale(1.3) rotate(0deg);
   }
 
   100% {
-    opacity: 1;
-    transform: scale(1.6) rotate(360deg);
+    transform: scale(1.3) rotate(360deg);
+  }
+}
+
+@keyframes mantleScale {
+  50% {
+    transform: scale(2);
   }
 }
 
@@ -81,14 +84,13 @@ body {
   }
 
   100% {
-    opacity: 1;
     transform: rotate(360deg);
   }
 }
 
 @keyframes crustScale {
   0% {
-    transform: scale(1.6);
+    transform: scale(1.3);
   }
 
   50% {
@@ -96,6 +98,31 @@ body {
   }
 
   100% {
-    transform: scale(1.6);
+    transform: scale(1.3);
+  }
+}
+
+.text-upwards {
+  animation: textUpwards 500ms ease-out 1000ms forwards;
+}
+
+/*  Text Animation */
+@keyframes textUpwards {
+  0% {
+    transform: translateY(0%);
+  }
+
+  50% {
+    display: none;
+    transform: translateY(-100%);
+  }
+
+  51% {
+    display: flex;
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0%);
   }
 }

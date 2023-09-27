@@ -1,31 +1,25 @@
-'use client'
+'use client';
 
-import React from 'react'
 import {
   FC,
   useState,
   useEffect,
   memo,
   ReactNode,
-} from 'react'
+} from 'react';
 
-import Image, {
-  StaticImageData as NextImageProp,
-} from 'next/image'
+import Image from 'next/image';
 
-interface ImageBackgroundProps {
-  children: ReactNode | JSX.Element
-  imageCollection: Array<{
-    src: NextImageProp
-    title: string
-    subtitle: string
-  }>
-  imageIndex: number
+import { ImageCollectionProps } from '@/app/page';
+
+interface ImageBackgroundProps
+  extends ImageCollectionProps {
+  children: ReactNode | JSX.Element;
+  imageIndex: number;
 }
-
-const CORE_ANIM_CLASS = 'core-spin'
-const MANTLE_ANIM_CLASS = 'mantle-spin'
-const CRUST_ANIM_CLASS = 'crust-spin'
+const CORE_ANIM_CLASS = 'core-spin';
+const MANTLE_ANIM_CLASS = 'mantle-spin';
+const CRUST_ANIM_CLASS = 'crust-spin';
 
 const ImageBackground: FC<ImageBackgroundProps> = ({
   children,
@@ -33,31 +27,32 @@ const ImageBackground: FC<ImageBackgroundProps> = ({
   imageIndex,
 }): React.ReactNode => {
   const [isFirstRender, setIsFirstRender] =
-    useState<boolean>(true)
+    useState<boolean>(true);
 
-  const [startSpin, setStartSpin] = useState<boolean>(false)
+  const [startSpin, setStartSpin] =
+    useState<boolean>(false);
 
   const [currentIndex, setCurrentIndex] =
-    useState<number>(imageIndex)
+    useState<number>(imageIndex);
 
   useEffect(() => {
-    !isFirstRender && setStartSpin(true)
+    !isFirstRender && setStartSpin(true);
 
     const imageChangeInterval = setInterval(() => {
-      setCurrentIndex(imageIndex)
-    }, 700)
+      setCurrentIndex(imageIndex);
+    }, 600);
 
     const spinInterval = setInterval(() => {
-      setStartSpin(false)
-    }, 2000)
+      setStartSpin(false);
+    }, 2500);
 
-    setIsFirstRender(false)
+    setIsFirstRender(false);
 
     return () => {
-      clearInterval(imageChangeInterval)
-      clearInterval(spinInterval)
-    }
-  }, [imageIndex])
+      clearInterval(imageChangeInterval);
+      clearInterval(spinInterval);
+    };
+  }, [imageIndex]);
 
   const renderCoreLayers = (
     _: unknown,
@@ -75,8 +70,8 @@ const ImageBackground: FC<ImageBackgroundProps> = ({
           objectFit: 'cover',
         }}
       />
-    )
-  }
+    );
+  };
 
   const renderMantleLayers = (
     _: unknown,
@@ -100,8 +95,8 @@ const ImageBackground: FC<ImageBackgroundProps> = ({
           }}
         />
       </>
-    )
-  }
+    );
+  };
 
   const renderCrustLayers = (
     _: unknown,
@@ -121,13 +116,15 @@ const ImageBackground: FC<ImageBackgroundProps> = ({
           objectFit: 'cover',
         }}
       />
-    )
-  }
+    );
+  };
 
   return (
-    <div className='container relative h-screen min-w-full overflow-hidden'>
+    <div className='container flex flex-col relative min-h-screen min-w-full overflow-hidden'>
+      {children}
+
       <div
-        className={`core flex absolute inset-0 z-30 ${
+        className={`layer core flex absolute inset-0 -z-10 ${
           startSpin ? CORE_ANIM_CLASS : ''
         }`}
       >
@@ -135,7 +132,7 @@ const ImageBackground: FC<ImageBackgroundProps> = ({
       </div>
 
       <div
-        className={`mantle flex absolute inset-0 z-20 ${
+        className={`layer mantle flex absolute inset-0 -z-20 ${
           startSpin ? MANTLE_ANIM_CLASS : ''
         }`}
       >
@@ -143,14 +140,14 @@ const ImageBackground: FC<ImageBackgroundProps> = ({
       </div>
 
       <div
-        className={`crust flex absolute inset-0 ${
+        className={`layer crust flex absolute inset-0 -z-30 ${
           startSpin ? CRUST_ANIM_CLASS : ''
         }`}
       >
         {imageCollection.map(renderCrustLayers)}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default memo(ImageBackground)
+export default memo(ImageBackground);
