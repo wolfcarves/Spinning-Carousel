@@ -2,26 +2,100 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+body {
+  height: 100vh;
+  min-width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* transform: scale(0.9); */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.core {
+  mask-image: radial-gradient(30rem, black 50%, transparent 50%);
+  transform: scale(1.6);
+}
+
+.core-spin {
+  animation: coreSpin 1500ms ease-in-out 0ms;
+}
+
+.mantle {
+  mask-image: radial-gradient(60rem, black 50%, transparent 50%);
+  transform: scale(1.6);
+}
+
+.mantle-spin {
+  animation: mantleSpin 1500ms ease-in-out 200ms forwards;
+}
+
+.crust {
+  transform: scale(1.6);
+}
+
+.crust-spin {
+  animation: crustSpin 1500ms ease-in-out 300ms forwards;
+}
+
+.crust-scale {
+  animation: crustScale 1500ms ease-in-out 300ms forwards;
+}
+
+
+.seperator {
+  clip-path: polygon(0 50%, 23% 48%, 50% 48%, 75% 48%, 100% 50%, 75% 51%, 50% 51%, 24% 51%);
+}
+
+.image {
+  transition: opacity 1000ms;
+}
+
+
+@keyframes coreSpin {
+  0% {
+    opacity: 1;
+    transform: scale(1.6) rotate(0deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.6) rotate(360deg);
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@keyframes mantleSpin {
+  0% {
+    opacity: 1;
+    transform: scale(1.6) rotate(0deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.6) rotate(360deg);
+  }
+}
+
+@keyframes crustSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes crustScale {
+  0% {
+    transform: scale(1.6);
+  }
+
+  50% {
+    transform: scale(4);
+  }
+
+  100% {
+    transform: scale(1.6);
+  }
 }
