@@ -1,5 +1,6 @@
 import React, { FC, useRef, useState } from 'react';
 import Button from '@/components/Button';
+import Link from 'next/link';
 
 import { MdRestartAlt } from 'react-icons/md';
 import { BiLogoFacebook } from 'react-icons/bi';
@@ -32,9 +33,15 @@ const Footer: FC<FooterProps> = ({
 
   return (
     <div className='relative flex items-center justify-between mt-auto p-5 z-50'>
-      <Button css='hover:bg-slate-200/20'>
-        <BiLogoFacebook />
-      </Button>
+      <Link
+        href='https://www.facebook.com/rodel.crisosto'
+        target='_blank'
+        rel='noopener'
+      >
+        <Button css='hover:bg-slate-200/20'>
+          <BiLogoFacebook />
+        </Button>
+      </Link>
 
       <span className='absolute inset-0 h-max w-max m-auto text-white text-xs tracking-widest'>
         LEARN TODAY
