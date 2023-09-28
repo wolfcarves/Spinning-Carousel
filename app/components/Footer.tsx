@@ -1,5 +1,8 @@
-import React, { FC } from 'react';
-import { MdRestartAlt, MdShare } from 'react-icons/md';
+import React, { FC, useRef, useState } from 'react';
+import Button from '@/components/Button';
+
+import { MdRestartAlt } from 'react-icons/md';
+import { BiLogoFacebook } from 'react-icons/bi';
 
 interface FooterProps {
   handleImageChange: () => void;
@@ -8,22 +11,49 @@ interface FooterProps {
 const Footer: FC<FooterProps> = ({
   handleImageChange,
 }): JSX.Element => {
+  const [isClicked, setIsClicked] =
+    useState<boolean>(false);
+
+  const buttonIntervalRef = useRef<NodeJS.Timeout | null>(
+    null
+  );
+
+  const handleClick = () => {
+    setIsClicked(true);
+
+    if (buttonIntervalRef.current !== null) {
+      clearInterval(buttonIntervalRef.current);
+    }
+
+    buttonIntervalRef.current = setInterval(() => {
+      setIsClicked(false);
+    }, 2500);
+  };
+
   return (
-    <div className='relative flex justify-between mt-auto p-5 z-50'>
-      <button className='rounded-full p-3 text-white text-xl hover:bg-slate-200/20 duration-200'>
-        <MdShare />
-      </button>
+    <div className='relative flex items-center justify-between mt-auto p-5 z-50'>
+      <Button css='hover:bg-slate-200/20'>
+        <BiLogoFacebook />
+      </Button>
 
       <span className='absolute inset-0 h-max w-max m-auto text-white text-xs tracking-widest'>
         LEARN TODAY
       </span>
 
-      <button
-        className='rounded-full p-3 bg-yellow-200'
-        onClick={handleImageChange}
-      >
-        <MdRestartAlt />
-      </button>
+      <div onClick={handleImageChange}>
+        <Button
+          disabled={isClicked}
+          css='bg-yellow-200'
+          onClick={handleClick}
+        >
+          <div
+            className={`${
+              isClicked && 'click-effect'
+            } absolute inset-0 rounded-full`}
+          ></div>
+          <MdRestartAlt className='text-black' />
+        </Button>
+      </div>
     </div>
   );
 };

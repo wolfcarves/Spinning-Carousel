@@ -1,6 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Bellefair, Inter } from 'next/font/google';
+import { Bellefair } from 'next/font/google';
 
 const bellefair = Bellefair({
   subsets: ['hebrew'],

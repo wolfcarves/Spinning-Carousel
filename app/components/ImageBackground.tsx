@@ -6,6 +6,7 @@ import {
   useEffect,
   memo,
   ReactNode,
+  Fragment,
 } from 'react';
 
 import Image from 'next/image';
@@ -60,6 +61,7 @@ const ImageBackground: FC<ImageBackgroundProps> = ({
   ): JSX.Element => {
     return (
       <Image
+        key={index}
         className='image'
         src={imageCollection[index].src}
         alt='An image'
@@ -78,7 +80,7 @@ const ImageBackground: FC<ImageBackgroundProps> = ({
     index: number
   ): JSX.Element => {
     return (
-      <>
+      <Fragment key={index}>
         <div className='bg-black opacity-5 absolute inset-0 z-50'></div>
 
         <Image
@@ -94,7 +96,7 @@ const ImageBackground: FC<ImageBackgroundProps> = ({
             objectFit: 'cover',
           }}
         />
-      </>
+      </Fragment>
     );
   };
 
@@ -104,6 +106,7 @@ const ImageBackground: FC<ImageBackgroundProps> = ({
   ): JSX.Element => {
     return (
       <Image
+        key={index}
         className={`image ${
           startSpin ? 'crust-scale' : ''
         }`}

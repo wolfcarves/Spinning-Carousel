@@ -1,9 +1,9 @@
 'use client';
-import { useState, FC } from 'react';
+import { useState, FC, useCallback } from 'react';
 
 import { IMAGE_COLLECTION } from '@/constants/imageCollection';
 
-import ImageBackground from '@/components/container/ImageBackground';
+import ImageBackground from '@/app/components/ImageBackground';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Title from '@/components/Title';
@@ -21,13 +21,13 @@ export interface ImageCollectionProps {
 const Home: FC = (): JSX.Element => {
   const [index, setIndex] = useState<number>(0);
 
-  const handleImageChange = () => {
+  const handleImageChange = useCallback(() => {
     setIndex((prevIndex) =>
       IMAGE_COLLECTION.length - 1 !== prevIndex
         ? prevIndex + 1
         : 0
     );
-  };
+  }, []);
 
   return (
     <ImageBackground

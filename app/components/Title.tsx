@@ -15,6 +15,10 @@ const Title: FC<TitleProps> = ({
     imageCollection[imageIndex].title
   );
 
+  const [subtitle, setSubtitle] = useState<string>(
+    imageCollection[imageIndex].subtitle
+  );
+
   const [isFirstRender, setIsFirstRender] =
     useState<boolean>(true);
 
@@ -26,6 +30,7 @@ const Title: FC<TitleProps> = ({
 
     const updateTextInterval = setInterval(() => {
       setTitle(imageCollection[imageIndex].title);
+      setSubtitle(imageCollection[imageIndex].subtitle);
     }, 1200);
 
     const imageInterval = setInterval(() => {
@@ -41,23 +46,27 @@ const Title: FC<TitleProps> = ({
   }, [imageIndex]);
 
   return (
-    <div className='absolute inset-0 m-auto flex flex-col items-center justify-center'>
+    <div className='absolute inset-0 m-auto flex flex-col items-center justify-center translate-y-10'>
       <div className='overflow-hidden'>
         <h1
           className={`${
             isImageChanged && 'text-upwards'
-          } font-extralight title text-white text-center justify-center text-[5vw] xl:text-[60px] tracking-[7.5vw] -me-[7.5vw] uppercase leading-[1em]`}
+          } text-white text-center justify-center text-[5vw] xl:text-[40px] 2xl:text-[60px] tracking-[7.5vw] -me-[7.5vw] leading-[1em] uppercase`}
         >
           {title}
         </h1>
       </div>
 
       {/*Seperator */}
-      <div className='seperator justify-self-center h-[50px] bg-white w-[600px] rounded-full opacity-50'></div>
+      <div className='seperator justify-self-center h-[50px] bg-white w-[70vw] xl:w-[600px] rounded-full opacity-50'></div>
 
       <div className='overflow-hidden'>
-        <h1 className='text-white text-center justify-center text-[30px] tracking-[35px] -me-[35px] uppercase'>
-          {/* {imageCollection[imageIndex].subtitle} */}
+        <h1
+          className={`${
+            isImageChanged && 'text-downwards'
+          } text-white text-center justify-center text-[3vw] xl:text-[25px] tracking-[2vw] -me-[2vw] uppercase`}
+        >
+          {subtitle}
         </h1>
       </div>
     </div>
