@@ -1,3 +1,5 @@
+import { Analytics } from '@vercel/analytics/react';
+
 import './globals.css';
 import type { Metadata } from 'next';
 import { Bellefair } from 'next/font/google';
@@ -21,6 +23,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={bellefair.className}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
