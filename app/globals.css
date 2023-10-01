@@ -4,6 +4,7 @@
 
 body {
   height: 100vh;
+  max-height: -webkit-fill-available;
   min-width: 100vw;
   margin: 0;
   padding: 0;
@@ -12,6 +13,7 @@ body {
 
 .layer {
   transform: scale(1.6);
+  border: 1px solid red;
 }
 
 .core {
@@ -20,6 +22,7 @@ body {
 
 .core-spin {
   animation: coreSpin 1500ms ease-in-out 400ms;
+  -webkit-animation: coreSpin 1500ms ease-in-out 400ms;
 }
 
 .mantle {
@@ -28,20 +31,24 @@ body {
 
 .mantle-spin {
   animation: mantleSpin 1500ms ease-in-out 600ms forwards;
+  -webkit-animation: mantleSpin 1500ms ease-in-out 600ms forwards;
 }
 
 .mantle-scale {
   animation: mantleScale 1500ms ease-in-out 600ms forwards;
+  -webkit-animation: mantleScale 1500ms ease-in-out 600ms forwards;
 }
 
 .crust {}
 
 .crust-spin {
   animation: crustSpin 1500ms ease-in-out 800ms forwards;
+  -webkit-animation: crustSpin 1500ms ease-in-out 800ms forwards;
 }
 
 .crust-scale {
   animation: crustScale 1500ms ease-in-out 800ms forwards;
+  -webkit-animation: crustScale 1500ms ease-in-out 800ms forwards;
 }
 
 .seperator {
@@ -54,6 +61,7 @@ body {
 
 .click-effect {
   animation: clickEffect 800ms ease-out forwards;
+  -webkit-animation: clickEffect 800ms ease-out forwards;
 }
 
 @keyframes clickEffect {
@@ -176,7 +184,6 @@ body {
 }
 
 /* Media Queries */
-
 
 @media (max-width: 1280px) {
   .core {

@@ -46,7 +46,7 @@ const Title: FC<TitleProps> = ({
   }, [imageIndex]);
 
   return (
-    <div className='absolute inset-0 m-auto flex flex-col items-center justify-center translate-y-10'>
+    <div className='absolute bottom-0 top-0 left-0 right-0 flex flex-col items-center justify-center translate-y-10'>
       <div className='overflow-hidden'>
         <h1
           className={`${

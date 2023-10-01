@@ -81,7 +81,7 @@ const ImageBackground: FC<ImageBackgroundProps> = ({
   ): JSX.Element => {
     return (
       <Fragment key={index}>
-        <div className='bg-black opacity-5 absolute inset-0 z-50'></div>
+        <div className='bg-black opacity-5 absolute w-full h-full z-50'></div>
 
         <Image
           className={`image ${
@@ -123,11 +123,11 @@ const ImageBackground: FC<ImageBackgroundProps> = ({
   };
 
   return (
-    <div className='container flex flex-col relative min-h-screen min-w-full overflow-hidden'>
+    <div className='container flex flex-col relative h-full min-w-full overflow-hidden'>
       {children}
 
       <div
-        className={`layer core flex absolute inset-0 -z-10 ${
+        className={`layer core absolute min-w-[100vw] min-h-full -z-10 ${
           startSpin ? CORE_ANIM_CLASS : ''
         }`}
       >
@@ -135,7 +135,7 @@ const ImageBackground: FC<ImageBackgroundProps> = ({
       </div>
 
       <div
-        className={`layer mantle flex absolute inset-0 -z-20 ${
+        className={`layer mantle absolute min-w-[100vw] min-h-full -z-20 ${
           startSpin ? MANTLE_ANIM_CLASS : ''
         }`}
       >
@@ -143,7 +143,7 @@ const ImageBackground: FC<ImageBackgroundProps> = ({
       </div>
 
       <div
-        className={`layer crust flex absolute inset-0 -z-30 ${
+        className={`layer crust absolute min-w-[100vw] min-h-full -z-30 ${
           startSpin ? CRUST_ANIM_CLASS : ''
         }`}
       >

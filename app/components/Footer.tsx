@@ -43,7 +43,7 @@ const Footer: FC<FooterProps> = ({
         </Button>
       </Link>
 
-      <span className='absolute inset-0 h-max w-max m-auto text-white text-xs tracking-widest'>
+      <span className='absolute bottom-0 top-0 left-0 right-0 h-max w-max m-auto text-white text-xs tracking-widest'>
         LEARN TODAY
       </span>
 
