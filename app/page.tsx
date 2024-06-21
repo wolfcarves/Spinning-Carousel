@@ -1,18 +1,18 @@
-'use client';
-import { useState, FC, useCallback } from 'react';
+"use client";
+import { useState, FC, useCallback } from "react";
 
-import { IMAGE_COLLECTION } from '@/constants/imageCollection';
+import { IMAGE_COLLECTION } from "@/constants/imageCollection";
 
-import ImageBackground from '@/app/components/ImageBackground';
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
-import Title from '@/components/Title';
+import ImageBackground from "@/app/components/ImageBackground";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import Title from "@/components/Title";
 
-import type { StaticImageData as NextImageProp } from 'next/image';
+import type { StaticImageData as NextImageProp } from "next/image";
 
 export interface ImageCollectionProps {
   imageCollection: Array<{
-    src: NextImageProp;
+    src: NextImageProp | string;
     title: string;
     subtitle: string;
   }>;
@@ -22,24 +22,14 @@ const Home: FC = (): JSX.Element => {
   const [index, setIndex] = useState<number>(0);
 
   const handleImageChange = useCallback(() => {
-    setIndex((prevIndex) =>
-      IMAGE_COLLECTION.length - 1 !== prevIndex
-        ? prevIndex + 1
-        : 0
-    );
+    setIndex((prevIndex) => (IMAGE_COLLECTION.length - 1 !== prevIndex ? prevIndex + 1 : 0));
   }, []);
 
   return (
-    <ImageBackground
-      imageCollection={IMAGE_COLLECTION}
-      imageIndex={index}
-    >
+    <ImageBackground imageCollection={IMAGE_COLLECTION} imageIndex={index}>
       <Header />
 
-      <Title
-        imageCollection={IMAGE_COLLECTION}
-        imageIndex={index}
-      />
+      <Title imageCollection={IMAGE_COLLECTION} imageIndex={index} />
 
       <Footer handleImageChange={handleImageChange} />
     </ImageBackground>
