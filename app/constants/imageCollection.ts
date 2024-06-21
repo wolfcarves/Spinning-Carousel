@@ -6,27 +6,27 @@ import Image5 from "../../public/images/image5.jpg";
 
 export const IMAGE_COLLECTION = [
   {
-    src: "../../public/images/image1.jpg",
+    src: Image1,
     title: "Highlands",
     subtitle: "Scotland",
   },
   {
-    src: "../../public/images/image1.jpg",
+    src: Image2,
     title: "Sahara",
     subtitle: "Marrakech",
   },
   {
-    src: "../../public/images/image1.jpg",
+    src: Image3,
     title: "Dolomites",
     subtitle: "Italy",
   },
   {
-    src: "../../public/images/image1.jpg",
+    src: Image4,
     title: "Maldives",
     subtitle: "Indian Ocean",
   },
   {
-    src: "../../public/images/image1.jpg",
+    src: Image5,
     title: "SMILE",
     subtitle: "HAHAHAHAHHA",
   },

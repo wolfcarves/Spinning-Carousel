@@ -1,40 +1,25 @@
-'use client';
+"use client";
 
-import {
-  FC,
-  useState,
-  useEffect,
-  memo,
-  ReactNode,
-  Fragment,
-} from 'react';
+import { FC, useState, useEffect, memo, ReactNode, Fragment } from "react";
 
-import Image from 'next/image';
+import Image from "next/image";
 
-import { ImageCollectionProps } from '@/app/page';
+import { ImageCollectionProps } from "@/app/page";
 
-interface ImageBackgroundProps
-  extends ImageCollectionProps {
+interface ImageBackgroundProps extends ImageCollectionProps {
   children: ReactNode | JSX.Element;
   imageIndex: number;
 }
-const CORE_ANIM_CLASS = 'core-spin';
-const MANTLE_ANIM_CLASS = 'mantle-spin';
-const CRUST_ANIM_CLASS = 'crust-spin';
+const CORE_ANIM_CLASS = "core-spin";
+const MANTLE_ANIM_CLASS = "mantle-spin";
+const CRUST_ANIM_CLASS = "crust-spin";
 
-const ImageBackground: FC<ImageBackgroundProps> = ({
-  children,
-  imageCollection,
-  imageIndex,
-}): React.ReactNode => {
-  const [isFirstRender, setIsFirstRender] =
-    useState<boolean>(true);
+const ImageBackground: FC<ImageBackgroundProps> = ({ children, imageCollection, imageIndex }): React.ReactNode => {
+  const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
 
-  const [startSpin, setStartSpin] =
-    useState<boolean>(false);
+  const [startSpin, setStartSpin] = useState<boolean>(false);
 
-  const [currentIndex, setCurrentIndex] =
-    useState<number>(imageIndex);
+  const [currentIndex, setCurrentIndex] = useState<number>(imageIndex);
 
   useEffect(() => {
     !isFirstRender && setStartSpin(true);
@@ -55,98 +40,76 @@ const ImageBackground: FC<ImageBackgroundProps> = ({
     };
   }, [imageIndex]);
 
-  const renderCoreLayers = (
-    _: unknown,
-    index: number
-  ): JSX.Element => {
+  const renderCoreLayers = (_: unknown, index: number): JSX.Element => {
     return (
       <Image
+        unoptimized
         key={index}
-        className='image'
+        className="image"
         src={imageCollection[index].src}
-        alt='An image'
+        alt="An image"
         fill
         quality={100}
         style={{
           opacity: currentIndex < index ? 0 : 1,
-          objectFit: 'cover',
+          objectFit: "cover",
         }}
       />
     );
   };
 
-  const renderMantleLayers = (
-    _: unknown,
-    index: number
-  ): JSX.Element => {
+  const renderMantleLayers = (_: unknown, index: number): JSX.Element => {
     return (
       <Fragment key={index}>
-        <div className='bg-black opacity-5 absolute w-full h-full z-50'></div>
+        <div className="bg-black opacity-5 absolute w-full h-full z-50"></div>
 
         <Image
-          className={`image ${
-            startSpin ? 'mantle-scale' : ''
-          }`}
+          unoptimized
+          className={`image ${startSpin ? "mantle-scale" : ""}`}
           src={imageCollection[index].src}
-          alt='An image'
+          alt="An image"
           fill
           quality={100}
           style={{
             opacity: currentIndex < index ? 0 : 1,
-            objectFit: 'cover',
+            objectFit: "cover",
           }}
         />
       </Fragment>
     );
   };
 
-  const renderCrustLayers = (
-    _: unknown,
-    index: number
-  ): JSX.Element => {
+  const renderCrustLayers = (_: unknown, index: number): JSX.Element => {
     return (
       <Image
+        unoptimized
         key={index}
-        className={`image ${
-          startSpin ? 'crust-scale' : ''
-        }`}
+        className={`image ${startSpin ? "crust-scale" : ""}`}
         src={imageCollection[index].src}
-        alt='An image'
+        alt="An image"
         fill
         quality={100}
         style={{
           opacity: currentIndex < index ? 0 : 1,
-          objectFit: 'cover',
+          objectFit: "cover",
         }}
       />
     );
   };
 
   return (
-    <div className='container flex flex-col relative h-full min-w-full overflow-hidden'>
+    <div className="container flex flex-col relative h-full min-w-full overflow-hidden">
       {children}
 
-      <div
-        className={`layer core absolute min-w-[100vw] min-h-full -z-10 ${
-          startSpin ? CORE_ANIM_CLASS : ''
-        }`}
-      >
+      <div className={`layer core absolute min-w-[100vw] min-h-full -z-10 ${startSpin ? CORE_ANIM_CLASS : ""}`}>
         {imageCollection.map(renderCoreLayers)}
       </div>
 
-      <div
-        className={`layer mantle absolute min-w-[100vw] min-h-full -z-20 ${
-          startSpin ? MANTLE_ANIM_CLASS : ''
-        }`}
-      >
+      <div className={`layer mantle absolute min-w-[100vw] min-h-full -z-20 ${startSpin ? MANTLE_ANIM_CLASS : ""}`}>
         {imageCollection.map(renderMantleLayers)}
       </div>
 
-      <div
-        className={`layer crust absolute min-w-[100vw] min-h-full -z-30 ${
-          startSpin ? CRUST_ANIM_CLASS : ''
-        }`}
-      >
+      <div className={`layer crust absolute min-w-[100vw] min-h-full -z-30 ${startSpin ? CRUST_ANIM_CLASS : ""}`}>
         {imageCollection.map(renderCrustLayers)}
       </div>
     </div>
